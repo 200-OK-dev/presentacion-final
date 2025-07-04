@@ -3,14 +3,14 @@ import Image from 'next/image';
 
 export default function DemostracionVivo() {
   return (
-    <section id="demostracion" className="mb-16">
+    <section id="demostracion" className="mb-16 mt-12">
       <h2 className="text-3xl font-bold text-slate-100 mb-8 flex items-center">
         <span className="text-slate-100 mr-3">5.</span>
         Demostración en Vivo
       </h2>
 
       <div className="flex justify-center mb-8">
-        <div className="relative w-full max-w-md">
+        <div className="relative w-full max-w-md py-8">
           <Image
             src="/qrcode.png"
             alt="Demostración en Vivo"

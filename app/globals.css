@@ -4,6 +4,23 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.section-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 0;
+  scroll-snap-align: start;
+  scroll-margin-top: 5rem; /* Ajusta según la altura de tu navbar */
 }
 
 /* Custom scrollbar for webkit browsers */
@@ -32,7 +49,7 @@ html {
 }
 /* Para todas las secciones que pueden ser target de navegación */
 section[id] {
-  scroll-margin-top: 96px; /* Ajusta según la altura real de tu nav */
+  scroll-margin-top: 35px; /* Ajusta según la altura real de tu nav */
 }
 
 /* O si prefieres ser más específico */

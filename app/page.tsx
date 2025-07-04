@@ -69,44 +69,70 @@ export default function PortfolioReport() {
         scrollToSection={scrollToSection} 
       />
 
-      {/* Content */}
-      <main className="pt-32 lg:pt-20">
-        <div className="max-w-4xl mx-auto px-6 py-8">
-          {/* Portada/Introducción */}
-          <Introduccion />
-
-          {/* Info */}
-          <section id="info" className="mb-16">
+      {/* Contenido principal */}
+      <main>
+        {/* Portada/Introducción */}
+        <section id="introduccion" className="section-container">
+          <div className="w-full max-w-4xl mx-auto px-6">
+            <Introduccion />
+          </div>
+        </section>
+        
+        {/* Info */}
+        <section id="info" className="section-container">
+          <div className="w-full max-w-4xl mx-auto px-6">
             <h2 className="text-3xl font-bold text-slate-100 mb-8 flex items-center">
               <span className="text-slate-100 mr-3">1.</span>
               Info
             </h2>
-            <DeveloperProfileCard
-              onCollaborationClick={() => setIsCollaborationModalOpen(true)}
-            />
+            <div className="flex justify-center">
+              <DeveloperProfileCard
+                onCollaborationClick={() => setIsCollaborationModalOpen(true)}
+              />
+            </div>
             <CollaborationModal 
               isOpen={isCollaborationModalOpen} 
               onClose={() => setIsCollaborationModalOpen(false)}
             />
-          </section>
+          </div>
+        </section>
 
-          {/* Perfil Profesional */}
-          <PerfilProfesional 
-            onCollaborationClick={() => setIsCollaborationModalOpen(true)} 
-          />
+        {/* Perfil Profesional */}
+        <section id="perfil" className="section-container">
+          <div className="w-full max-w-4xl mx-auto px-6">
+            <PerfilProfesional 
+              onCollaborationClick={() => setIsCollaborationModalOpen(true)} 
+            />
+          </div>
+        </section>
 
-          {/* Aprendizajes Clave */}
-          <AprendizajesClave />
+        {/* Aprendizajes Clave */}
+        <section id="aprendizajes" className="section-container">
+          <div className="w-full max-w-4xl mx-auto px-6">
+            <AprendizajesClave />
+          </div>
+        </section>
 
-          {/* Proceso de Desarrollo */}
-          <ProcesoDesarrollo />
+        {/* Proceso de Desarrollo */}
+        <section id="proceso" className="section-container">
+          <div className="w-full max-w-4xl mx-auto px-6">
+            <ProcesoDesarrollo />
+          </div>
+        </section>
 
-          {/* Demostración en Vivo */}
-          <DemostracionVivo />
+        {/* Demostración en Vivo */}
+        <section id="demostracion" className="section-container">
+          <div className="w-full max-w-4xl mx-auto px-6">
+            <DemostracionVivo />
+          </div>
+        </section>
 
-          {/* Cierre */}
-          <Cierre />
-        </div>
+        {/* Cierre */}
+        <section id="cierre" className="section-container">
+          <div className="w-full max-w-4xl mx-auto px-6">
+            <Cierre />
+          </div>
+        </section>
       </main>
     </div>
   )
