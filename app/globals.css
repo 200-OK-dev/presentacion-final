@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #161b22;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}
+
+/* Smooth scroll timing */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+/* Para todas las secciones que pueden ser target de navegación */
+section[id] {
+  scroll-margin-top: 96px; /* Ajusta según la altura real de tu nav */
+}
+
+/* O si prefieres ser más específico */
+#introduccion,
+#investigacion,
+#objetivos,
+#arquetipos,
+#benchmark,
+#arquitectura,
+#bitacora,
+#metodologia,
+#concepto,
+#dinamismo,
+#decisiones,
+#estetica,
+#paginas,
+#responsive,
+#cronologia,
+#reflexiones {
+  scroll-margin-top: 96px;
+}
