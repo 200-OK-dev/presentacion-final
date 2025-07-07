@@ -26,11 +26,11 @@ const TextAnimation1 = () => {
   const textColors = [
     'text-cyan-400',      // Título principal
     'text-green-400',     // Next.js
-    'text-blue-400',      // Performance
-    'text-purple-400',    // Experiencia
-    'text-orange-400',    // Escalabilidad
-    'text-pink-400',      // Futuro
-    'text-yellow-400'     // Gracias
+    'text-green-400',      // Performance
+    'text-green-400',    // Experiencia
+    'text-green-400',    // Escalabilidad
+    'text-green-400',      // Futuro
+    'text-amber-400'     // Gracias
   ];
 
   // Efecto para el texto que se escribe acumulativamente
@@ -119,31 +119,73 @@ const TextAnimation1 = () => {
   // Función para renderizar cada línea con su color correspondiente
   const renderColoredLine = (text: string, index: number) => {
     const isTitle = index === 0;
+    const isLastLine = index === texts.length - 1;
     const colorClass = textColors[index] || 'text-white';
+    const showCursor = index === currentTextIndex && isAnimating;
+    const showFinalCursor = index === texts.length - 1 && !isAnimating && currentTextIndex >= texts.length - 1;
     
     return (
       <motion.div
         key={index}
-        className={`${colorClass} font-sans tracking-tight ${
+        className={`${colorClass} font-anta tracking-tight ${
           isTitle 
-            ? 'text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-bold mb-6' 
-            : 'text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl mb-3'
+            ? 'text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-4xl font-bold mb-8' 
+            : isLastLine
+            ? 'text-sm sm:text-base md:text-lg lg:text-2xl xl:text-4xl mt-8'
+            : 'text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-4'
         }`}
         style={{ fontFamily: 'var(--font-press-start)' }}
         variants={lineVariants}
         initial="hidden"
         animate="visible"
       >
-        {text}
-        {/* Cursor parpadeante solo en la línea actual */}
-        {index === currentTextIndex && isAnimating && (
-          <motion.span
-            className="text-yellow-500 ml-1"
-            variants={cursorVariants}
-            animate="blink"
-          >
-            |
-          </motion.span>
+        {/* Título principal sin bullet */}
+        {isTitle ? (
+          <div className="text-center">
+            {text}
+            {showCursor && (
+              <motion.span
+                className="text-yellow-500 ml-1"
+                variants={cursorVariants}
+                animate="blink"
+              >
+                |
+              </motion.span>
+            )}
+          </div>
+        ) : isLastLine ? (
+          // Línea final sin bullet, centrada
+          <div className="text-center">
+            {text}
+            {(showCursor || showFinalCursor) && (
+              <motion.span
+                className="text-yellow-500 ml-1"
+                variants={cursorVariants}
+                animate="blink"
+              >
+                |
+              </motion.span>
+            )}
+          </div>
+        ) : (
+          // Bullet points para el contenido
+          <div className="flex items-start justify-start text-left max-w-4xl mx-auto">
+            <span className="text-yellow-500 mr-4 text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl flex-shrink-0">
+              •
+            </span>
+            <span className="flex-1">
+              {text}
+              {showCursor && (
+                <motion.span
+                  className="text-yellow-500 ml-1"
+                  variants={cursorVariants}
+                  animate="blink"
+                >
+                  |
+                </motion.span>
+              )}
+            </span>
+          </div>
         )}
       </motion.div>
     );
@@ -156,7 +198,7 @@ const TextAnimation1 = () => {
       style={{ minHeight: '90vh' }}
     >
       <motion.div
-        className="text-center w-full max-w-4xl mx-auto"
+        className="text-center w-full max-w-6xl mx-auto"
         variants={container}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}

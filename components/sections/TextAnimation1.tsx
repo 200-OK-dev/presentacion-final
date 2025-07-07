@@ -91,7 +91,7 @@ const TextAnimation1 = () => {
     } else {
       // Para el texto NEXT.JS FRAMEWORK
       return (
-        <span className="text-yellow-400 font-sans text-xs sm:text-sm md:text-base lg:text-6xl xl:text-4xl" style={{ fontFamily: 'var(--font-press-start)' }}>
+        <span className="text-yellow-400 font-sans text-xs sm:text-sm md:text-base lg:text-5xl xl:text-5xl" style={{ fontFamily: 'var(--font-press-start)' }}>
           {text}
         </span>
       );
