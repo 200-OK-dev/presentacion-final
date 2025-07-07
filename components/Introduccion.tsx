@@ -82,7 +82,7 @@ const Introduccion = ({ className = '' }: IntroduccionProps) => {
                     <div className="text-xl md:text-2xl font-bold mb-1 tracking-wide">
                       FELIPE CORNEJO RODRÍGUEZ
                     </div>
-                    <div className="text-green-600 text-sm md:text-base mb-2">
+                    <div className="text-green-400 text-sm md:text-base mb-2">
                       A.K.A. 2000K_DEV
                     </div>
                     <div className="text-base md:text-lg font-semibold">
@@ -91,7 +91,8 @@ const Introduccion = ({ className = '' }: IntroduccionProps) => {
                   </div>
                   <div className="border-t border-black pt-4">
                     <p className="text-sm md:text-base leading-relaxed">
-                      Diseñador y desarrollador frontend. Actualmente desarrollando en Next.js. Enfocado en crear soluciones que equilibren 
+                      Diseñador y desarrollador frontend. Actualmente desarrollando en Next.js.
+                      Me enfoco en crear soluciones digitales que equilibren 
                       funcionalidad y diseño visual.
                     </p>
                   </div>
@@ -107,7 +108,7 @@ const Introduccion = ({ className = '' }: IntroduccionProps) => {
                 <span className="text-amber-400">›</span> DATA.LOADED
               </div>
               <div className="text-green-400">
-                ID: DEV_001 | TYPE: FRONTEND
+                ID: JULIO_07 | YEAR: 2025
               </div>
             </div>
           </div>

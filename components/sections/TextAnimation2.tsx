@@ -75,14 +75,14 @@ const TextAnimation2 = () => {
     if (currentTextIndex === 0) {
       // Para el primer texto (MAIPU)
       return (
-        <span className="text-indigo-400 font-sans text-xs sm:text-sm md:text-base lg:text-6xl xl:text-5xl" style={{ fontFamily: 'var(--font-press-start)' }}>
+        <span className="text-indigo-400 font-sans text-xs sm:text-sm md:text-base lg:text-4xl xl:text-4xl" style={{ fontFamily: 'var(--font-press-start)' }}>
           {text}
         </span>
       );
     } else if (currentTextIndex === 1) {
       // Para el segundo texto (ANCOA)
       return (
-        <span className="text-green-400 font-sans text-xs sm:text-sm md:text-base lg:text-6xl xl:text-5xl" style={{ fontFamily: 'var(--font-press-start)' }}>
+        <span className="text-green-400 font-sans text-xs sm:text-sm md:text-base lg:text-4xl xl:text-4xl" style={{ fontFamily: 'var(--font-press-start)' }}>
           {text}
         </span>
       );

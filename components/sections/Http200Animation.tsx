@@ -130,7 +130,7 @@ const Http200Animation = () => {
       }
     } else {
       // Para "2000K_DEV" con efecto neón ámbar
-      return <span className="neon-text-amber-low2 text-8xl font-anta font-bold">{text}</span>;
+      return <span className="neon-text-amber-low text-8xl font-anta font-bold">{text}</span>;
     }
   };
 

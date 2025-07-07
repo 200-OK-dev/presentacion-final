@@ -14,23 +14,26 @@ const TextAnimation1 = () => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   const texts = [
-    'CONCLUSIÓN DE LA PRESENTACIÓN',
-    'NEXT.JS REVOLUCIONA EL DESARROLLO WEB',
-    'PERFORMANCE Y SEO OPTIMIZADOS',
-    'EXPERIENCIA DE DESARROLLO SUPERIOR',
-    'ESCALABILIDAD EMPRESARIAL GARANTIZADA',
-    'EL FUTURO DEL DESARROLLO FRONTEND',
-    'GRACIAS POR SU ATENCIÓN'
+    'CONCLUSIÓN DEL PROCESO',
+    'LA IA FUE FUNDAMENTAL EN MI PROCESO DE APRENDIZAJE',
+    'CONOCI TECNOLOGIAS QUE FACILITARON MI TRABAJO',
+    'DESCUBRI EL OFICIO QUE ME PERMITIRA TENER LIBERTAD GEOGRAFICA',
+    
+    'MIS PROXIMOS PASOS:',
+    'CONECTAR CON OTROS CREATIVOS CON QUIENES COLABORAR',
+    'EXPLORAR EL DESARROLLO DE WEB APPS',
+    'GRACIAS'
   ];
 
   const textColors = [
-    'text-cyan-400',      // Título principal
-    'text-green-400',     // Next.js
-    'text-green-400',      // Performance
-    'text-green-400',    // Experiencia
-    'text-green-400',    // Escalabilidad
-    'text-green-400',      // Futuro
-    'text-amber-400'     // Gracias
+    'text-cyan-400',      // CONCLUSIÓN DEL PROCESO (título)
+    'text-green-400',     // LA IA FUE FUNDAMENTAL...
+    'text-green-400',     // CONOCI TECNOLOGIAS...
+    'text-green-400',     // DESCUBRI EL OFICIO...
+    'text-cyan-400',      // MIS PROXIMOS PASOS: (título)
+    'text-green-400',     // CONECTAR CON OTROS...
+    'text-green-400',     // CREAR WEB APPS...
+    'text-amber-400'      // GRACIAS POR SU ATENCIÓN
   ];
 
   // Efecto para el texto que se escribe acumulativamente
@@ -59,14 +62,14 @@ const TextAnimation1 = () => {
           return newTexts;
         });
         setCurrentCharIndex(currentCharIndex + 1);
-      }, 80); // Velocidad de escritura más fluida
+      }, 80); // Velocidad de escritura más rápida
       
       return () => clearTimeout(timeout);
     } else if (currentTextIndex < texts.length - 1) {
       const timeout = setTimeout(() => {
         setCurrentTextIndex(currentTextIndex + 1);
         setCurrentCharIndex(0);
-      }, 800); // Pausa entre líneas
+      }, 800); // Pausa más corta entre líneas
       
       return () => clearTimeout(timeout);
     } else {
@@ -118,28 +121,38 @@ const TextAnimation1 = () => {
 
   // Función para renderizar cada línea con su color correspondiente
   const renderColoredLine = (text: string, index: number) => {
-    const isTitle = index === 0;
+    const isTitle = index === 0 || index === 4; // Títulos en índices 0 y 4
     const isLastLine = index === texts.length - 1;
     const colorClass = textColors[index] || 'text-white';
     const showCursor = index === currentTextIndex && isAnimating;
     const showFinalCursor = index === texts.length - 1 && !isAnimating && currentTextIndex >= texts.length - 1;
+    
+    // Determinamos el espaciado extra
+    const getSpacingClass = () => {
+      if (index === 0) return 'mb-12'; // Primer título - MISMO espacio que tienes funcionando
+      if (index === 3) return 'mb-12'; // Última línea antes del segundo título (más espacio)
+      if (index === 4) return 'mb-12'; // Segundo título (MIS PROXIMOS PASOS) - MISMO espacio
+      if (index === 6) return 'mb-12'; // Última línea antes de GRACIAS (más espacio)
+      if (isLastLine) return ''; // Última línea (GRACIAS) sin margen extra
+      return 'mb-6'; // Líneas normales con bullet points
+    };
     
     return (
       <motion.div
         key={index}
         className={`${colorClass} font-anta tracking-tight ${
           isTitle 
-            ? 'text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-4xl font-bold mb-8' 
+            ? 'text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-4xl font-bold' 
             : isLastLine
-            ? 'text-sm sm:text-base md:text-lg lg:text-2xl xl:text-4xl mt-8'
-            : 'text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-4'
-        }`}
+            ? 'text-sm sm:text-base md:text-lg lg:text-2xl xl:text-4xl'
+            : 'text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl'
+        } ${getSpacingClass()}`}
         style={{ fontFamily: 'var(--font-press-start)' }}
         variants={lineVariants}
         initial="hidden"
         animate="visible"
       >
-        {/* Título principal sin bullet */}
+        {/* Títulos principales sin bullet */}
         {isTitle ? (
           <div className="text-center">
             {text}
@@ -204,7 +217,7 @@ const TextAnimation1 = () => {
         animate={isInView ? 'visible' : 'hidden'}
       >
         {/* Contenedor de todas las líneas */}
-        <div className="space-y-2 min-h-[400px] flex flex-col justify-center">
+        <div className="min-h-[400px] flex flex-col justify-center">
           {displayTexts.map((text, index) => 
             text ? renderColoredLine(text, index) : null
           )}
