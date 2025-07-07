@@ -149,7 +149,7 @@ export default function Navigation({ sections, activeSection, scrollToSection }:
     <>
       {/* Desktop Navigation con animación de entrada */}
       <nav 
-        className={`fixed top-0 left-0 right-0 z-[9999] bg-[#1E1E1E] border-b border-slate-100/20 backdrop-blur-sm transition-all duration-500 ease-in-out ${
+        className={`fixed top-0 left-0 right-0 z-[9999] bg-transparent border-b border-slate-100/20 backdrop-blur-sm transition-all duration-500 ease-in-out ${
           isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
         }`}
         onMouseEnter={handleMouseEnterNav}

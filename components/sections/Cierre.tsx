@@ -1,78 +1,187 @@
-import { CheckCircle, Rocket, Mail, Linkedin, Github, Twitter } from 'lucide-react';
+'use client';
 
-export default function Cierre() {
+import { motion, useInView, Variants } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+
+const TextAnimation1 = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.3 });
+
+  // Textos para la conclusión de la presentación
+  const [displayTexts, setDisplayTexts] = useState<string[]>([]);
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [currentCharIndex, setCurrentCharIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const texts = [
+    'CONCLUSIÓN DE LA PRESENTACIÓN',
+    'NEXT.JS REVOLUCIONA EL DESARROLLO WEB',
+    'PERFORMANCE Y SEO OPTIMIZADOS',
+    'EXPERIENCIA DE DESARROLLO SUPERIOR',
+    'ESCALABILIDAD EMPRESARIAL GARANTIZADA',
+    'EL FUTURO DEL DESARROLLO FRONTEND',
+    'GRACIAS POR SU ATENCIÓN'
+  ];
+
+  const textColors = [
+    'text-cyan-400',      // Título principal
+    'text-green-400',     // Next.js
+    'text-blue-400',      // Performance
+    'text-purple-400',    // Experiencia
+    'text-orange-400',    // Escalabilidad
+    'text-pink-400',      // Futuro
+    'text-yellow-400'     // Gracias
+  ];
+
+  // Efecto para el texto que se escribe acumulativamente
+  useEffect(() => {
+    if (!isInView) {
+      setDisplayTexts([]);
+      setCurrentTextIndex(0);
+      setCurrentCharIndex(0);
+      setIsAnimating(false);
+      return;
+    }
+
+    if (currentTextIndex >= texts.length) {
+      setIsAnimating(false);
+      return;
+    }
+
+    setIsAnimating(true);
+    const currentText = texts[currentTextIndex];
+    
+    if (currentCharIndex < currentText.length) {
+      const timeout = setTimeout(() => {
+        setDisplayTexts(prev => {
+          const newTexts = [...prev];
+          newTexts[currentTextIndex] = currentText.substring(0, currentCharIndex + 1);
+          return newTexts;
+        });
+        setCurrentCharIndex(currentCharIndex + 1);
+      }, 80); // Velocidad de escritura más fluida
+      
+      return () => clearTimeout(timeout);
+    } else if (currentTextIndex < texts.length - 1) {
+      const timeout = setTimeout(() => {
+        setCurrentTextIndex(currentTextIndex + 1);
+        setCurrentCharIndex(0);
+      }, 800); // Pausa entre líneas
+      
+      return () => clearTimeout(timeout);
+    } else {
+      setIsAnimating(false);
+    }
+  }, [isInView, currentTextIndex, currentCharIndex]);
+
+  // Variantes de animación mejoradas
+  const container: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const lineVariants: Variants = {
+    hidden: { 
+      opacity: 0, 
+      y: 30,
+      scale: 0.9
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 120,
+        damping: 15,
+        duration: 0.6
+      }
+    }
+  };
+
+  const cursorVariants: Variants = {
+    blink: {
+      opacity: [1, 0],
+      transition: {
+        duration: 0.5,
+        repeat: Infinity,
+        repeatType: 'reverse'
+      }
+    }
+  };
+
+  // Función para renderizar cada línea con su color correspondiente
+  const renderColoredLine = (text: string, index: number) => {
+    const isTitle = index === 0;
+    const colorClass = textColors[index] || 'text-white';
+    
+    return (
+      <motion.div
+        key={index}
+        className={`${colorClass} font-sans tracking-tight ${
+          isTitle 
+            ? 'text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-bold mb-6' 
+            : 'text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl mb-3'
+        }`}
+        style={{ fontFamily: 'var(--font-press-start)' }}
+        variants={lineVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {text}
+        {/* Cursor parpadeante solo en la línea actual */}
+        {index === currentTextIndex && isAnimating && (
+          <motion.span
+            className="text-yellow-500 ml-1"
+            variants={cursorVariants}
+            animate="blink"
+          >
+            |
+          </motion.span>
+        )}
+      </motion.div>
+    );
+  };
+
   return (
-    <section id="cierre" className="mb-16">
-      <h2 className="text-3xl font-bold text-slate-100 mb-8 flex items-center">
-        <span className="text-slate-100 mr-3">6.</span>
-        Cierre
-      </h2>
-
-      <div className="space-y-8">
-        {/* Conclusiones */}
-        <div className="bg-[#1E1E1E] rounded-lg p-6 border border-slate-100/20">
-          <h3 className="text-xl font-semibold text-slate-100 mb-4 flex items-center">
-            <CheckCircle className="w-5 h-5 mr-2" />
-            Conclusiones
-          </h3>
-          <p className="text-slate-100 leading-relaxed">
-            Este portafolio representa mi viaje de aprendizaje y crecimiento como desarrollador web. Cada proyecto y experiencia ha contribuido a mi conjunto de habilidades y me ha preparado para enfrentar nuevos desafíos en el mundo del desarrollo de software.
-          </p>
+    <div 
+      ref={ref} 
+      className="w-full h-full flex items-center justify-center p-8" 
+      style={{ minHeight: '90vh' }}
+    >
+      <motion.div
+        className="text-center w-full max-w-4xl mx-auto"
+        variants={container}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+      >
+        {/* Contenedor de todas las líneas */}
+        <div className="space-y-2 min-h-[400px] flex flex-col justify-center">
+          {displayTexts.map((text, index) => 
+            text ? renderColoredLine(text, index) : null
+          )}
         </div>
 
-        {/* Próximos pasos */}
-        <div className="bg-[#1E1E1E] rounded-lg p-6 border border-slate-100/20">
-          <h3 className="text-xl font-semibold text-slate-100 mb-4 flex items-center">
-            <Rocket className="w-5 h-5 mr-2" />
-            Próximos pasos
-          </h3>
-          <p className="text-slate-100 leading-relaxed mb-4">
-            Mis objetivos profesionales incluyen:
-          </p>
-          <ul className="space-y-3 text-slate-100 mb-4">
-            <li className="flex items-start">
-              <span className="w-2 h-2 bg-slate-100 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-              <span>Profundizar en tecnologías avanzadas de frontend y backend</span>
-            </li>
-            <li className="flex items-start">
-              <span className="w-2 h-2 bg-slate-100 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-              <span>Explorar desarrollo de aplicaciones móviles</span>
-            </li>
-            <li className="flex items-start">
-              <span className="w-2 h-2 bg-slate-100 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-              <span>Contribuir a proyectos de código abierto</span>
-            </li>
-            <li className="flex items-start">
-              <span className="w-2 h-2 bg-slate-100 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-              <span>Mentorar a otros desarrolladores en formación</span>
-            </li>
-          </ul>
-          <p className="text-slate-100 leading-relaxed">
-            Estoy emocionado por las oportunidades que el futuro me depare y por seguir creciendo como profesional en este campo en constante evolución.
-          </p>
-        </div>
-
-        {/* Agradecimientos y contacto */}
-        <div className="bg-[#1E1E1E] rounded-lg p-6 border border-slate-100/20">
-          <h3 className="text-xl font-semibold text-slate-100 mb-4 flex items-center">
-            <Mail className="w-5 h-5 mr-2" />
-            Agradecimientos y contacto
-          </h3>
-          <p className="text-slate-100 leading-relaxed mb-4">
-            Agradezco la oportunidad de compartir mi trabajo con ustedes. Si desean contactarme para oportunidades de colaboración o tienen alguna pregunta, no duden en hacerlo a través de los siguientes medios:
-          </p>
-          <div className="flex space-x-4 mt-6">
-            <a href="mailto:tu@email.com" className="text-blue-400 hover:text-blue-300 transition-colors">
-              <Mail className="w-6 h-6" />
-            </a>
-           
-            <a href="https://github.com/tuusuario" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">
-              <Github className="w-6 h-6" />
-            </a>
-           
-          </div>
-        </div>
-      </div>
-    </section>
+        {/* Mensaje final cuando termina la animación */}
+        {!isAnimating && currentTextIndex >= texts.length - 1 && (
+          <motion.div
+            className="mt-8 text-gray-400 text-sm"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 }}
+          >
+          
+          </motion.div>
+        )}
+      </motion.div>
+    </div>
   );
-}
+};
+
+export default TextAnimation1;

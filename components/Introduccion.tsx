@@ -1,91 +1,119 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-const Introduccion = () => {
-  // Animaciones
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
-  } as const;
+interface IntroduccionProps {
+  className?: string;
+}
 
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.16, 1, 0.3, 1] // Usando cubic-bezier en lugar de string
-      }
-    }
-  } as const;
-
-  const imageAnimation = {
-    hidden: { opacity: 0, scale: 0.9 },
-    show: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.2, 0.8, 0.2, 1] as const // Asegurando el tipo de array
-      }
-    }
-  } as const;
-
+const Introduccion = ({ className = '' }: IntroduccionProps) => {
   return (
-    <motion.section 
-      id="introduccion" 
-      className="mb-6"
-      variants={container}
-      initial="hidden"
-      animate="show"
-    >
-      <div className="text-center mb-12">
-        <motion.h1 
-          className="text-4xl md:text-5xl font-bold text-slate-100 mb-4"
-          variants={item}
+    <div className="relative w-full min-h-screen overflow-hidden">
+      {/* Video de fondo */}
+      <div className="absolute inset-0 w-full h-full">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
         >
-          Presentación de título
-        </motion.h1>
-        
-        <motion.h2 
-          className="text-2xl md:text-3xl text-slate-100 mb-4"
-          variants={item}
-        >
-          Portafolio Web Felipe Cornejo Rodríguez
-        </motion.h2>
-
-        <motion.h3 
-          className="text-xl md:text-2xl text-slate-100/80 max-w-2xl mx-auto mb-24"
-          variants={item}
-        >
-          Diseñador y Desarrollador Web
-        </motion.h3>
+          <source src="/video_editado.webm" type="video/webm" />
+          Tu navegador no soporta el elemento de video.
+        </video>
+        {/* Overlay para mejorar la legibilidad */}
+        <div className="absolute inset-0 bg-black/60"></div>
       </div>
-      
-      <motion.div 
-        className="flex justify-center"
-        variants={imageAnimation}
-      >
-        <Image
-          src="/portada.png"
-          alt="Logo"
-          width={600}
-          height={600}
-          className="shadow-lg rounded-lg"
-          priority
-        />
-      </motion.div>
-    </motion.section>
+
+      {/* Contenedor principal centrado */}
+      <div className="relative z-10 flex items-center justify-center min-h-screen p-4 font-anta">
+        <div className={`w-full max-w-4xl bg-black border-2 border-green-500 shadow-lg shadow-green-500/20 ${className}`}>
+          {/* Header de la Card */}
+          <div className="border-b border-green-500 bg-green-500/10 px-6 py-3">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center space-x-3">
+                <div className="w-3 h-4 bg-green-500 animate-pulse"></div>
+                <span className="text-amber-400 text-sm font-bold tracking-wider">
+                  FINAL PROJECT
+                </span>
+              </div>
+              <div className="text-green-400 text-xs">
+                DUOC UC
+              </div>
+            </div>
+          </div>
+
+          {/* Contenido Principal de la Card */}
+          <div className="p-8">
+            {/* Título */}
+            <div className="text-center mb-8">
+              <h1 className="text-2xl md:text-3xl text-amber-400 font-bold tracking-wider mb-2">
+                Portafolio de Titulo
+              </h1>
+              <h2 className="text-lg md:text-xl text-amber-400 font-bold tracking-wider">
+                Desarrollo y Diseño Web
+              </h2>
+            </div>
+
+            {/* Card de información central con imagen */}
+            <div className="bg-green-300/50 max-w-2xl mx-auto text-black p-6 mb-8 border border-green-500">
+              <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+                {/* Imagen de perfil */}
+                <div className="flex-shrink-0">
+                  <div className="relative w-48 h-48 md:w-48 md:h-48 border-2 border-black bg-black overflow-hidden">
+                    <Image
+                      src="/info.jpg"
+                      alt="Felipe Cornejo Rodriguez - Profile Picture"
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                  <div className="text-center mt-2">
+                    <div className="text-xs font-bold">ID: DEV_001</div>
+                    <div className="text-xs">STATUS: ACTIVE</div>
+                  </div>
+                </div>
+
+                {/* Información textual */}
+                <div className="flex-1 text-center md:text-left">
+                  <div className="mb-4">
+                    <div className="text-xl md:text-2xl font-bold mb-1 tracking-wide">
+                      FELIPE CORNEJO RODRÍGUEZ
+                    </div>
+                    <div className="text-green-600 text-sm md:text-base mb-2">
+                      A.K.A. 2000K_DEV
+                    </div>
+                    <div className="text-base md:text-lg font-semibold">
+                      DISEÑADOR / DESARROLLADOR
+                    </div>
+                  </div>
+                  <div className="border-t border-black pt-4">
+                    <p className="text-sm md:text-base leading-relaxed">
+                      Diseñador y desarrollador frontend. Actualmente desarrollando en Next.js. Enfocado en crear soluciones que equilibren 
+                      funcionalidad y diseño visual.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer de la Card */}
+          <div className="border-t border-green-500 bg-green-500/5 px-6 py-2">
+            <div className="flex justify-between items-center text-xs">
+              <div className="text-green-400">
+                <span className="text-amber-400">›</span> DATA.LOADED
+              </div>
+              <div className="text-green-400">
+                ID: DEV_001 | TYPE: FRONTEND
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

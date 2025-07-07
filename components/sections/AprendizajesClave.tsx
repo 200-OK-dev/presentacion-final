@@ -18,7 +18,7 @@ export default function AprendizajesClave() {
           <ul className="space-y-3 text-slate-100">
             <li className="flex items-start">
               <span className="w-2 h-2 bg-slate-100 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-              <span>Desarrollo frontend con React y Next.js</span>
+              <span>Desarrollo frontend Next.js</span>
             </li>
             <li className="flex items-start">
               <span className="w-2 h-2 bg-slate-100 rounded-full mr-3 mt-2 flex-shrink-0"></span>
@@ -26,11 +26,11 @@ export default function AprendizajesClave() {
             </li>
             <li className="flex items-start">
               <span className="w-2 h-2 bg-slate-100 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-              <span>Gestión de estado con Context API y Redux</span>
+              <span>Implementación de LLMs para generación de contenido dinámico</span>
             </li>
             <li className="flex items-start">
               <span className="w-2 h-2 bg-slate-100 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-              <span>Integración con APIs REST y GraphQL</span>
+              <span>Integración de herramientas MCP como Windsurf para desarrollo asistido</span>
             </li>
           </ul>
         </div>

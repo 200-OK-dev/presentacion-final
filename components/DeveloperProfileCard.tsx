@@ -99,45 +99,7 @@ export const DeveloperProfileCard: React.FC<DeveloperProfileCardProps> = ({
           </div>
         </div>
 
-        {/* Botones de Acción */}
-        <div className="flex flex-col space-y-3 items-center">
-          <a 
-            href="https://wa.me/56965215906" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="w-full text-center border border-green-500 bg-green-500/10 px-6 py-2 text-green-400 hover:bg-green-500/20 transition-colors min-w-[240px] text-sm font-bold tracking-wide"
-          >
-            WHATSAPP
-          </a>
-          <div className="relative w-full">
-            <button 
-              onClick={() => copyToClipboard('200_ok_dev@proton.me')}
-              className="w-full border border-green-500 bg-green-500/10 px-6 py-2 text-green-400 hover:bg-green-500/20 transition-colors min-w-[240px] text-sm font-bold tracking-wide"
-            >
-              {copiedEmail ? '¡EMAIL COPIADO!' : 'COPIAR EMAIL'}
-            </button>
-            {copiedEmail && (
-              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-green-500/90 text-black text-xs px-2 py-1 rounded whitespace-nowrap">
-                Correo copiado al portapapeles
-              </div>
-            )}
-          </div>
-          <a 
-            href="https://github.com/200-OK-dev" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="w-full text-center border border-green-500 bg-green-500/10 px-6 py-2 text-green-400 hover:bg-green-500/20 transition-colors min-w-[240px] text-sm font-bold tracking-wide"
-          >
-            GITHUB
-          </a>
-          <button 
-            onClick={onCollaborationClick}
-            className="w-full text-center border border-green-500/10 bg-green-500/10 px-6 py-2 text-green-400/20 hover:bg-green-500/20 transition-colors min-w-[240px] text-xs font-bold tracking-wide"
-          >
-            EL MUNDO NO ESTÁ COMO PARA ANDAR SOBREVIVIÉNDOLO SOLO.
-          </button>
-        </div>
-
+       
       </div>
 
       {/* Footer de la Card */}

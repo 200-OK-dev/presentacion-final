@@ -23,6 +23,13 @@ html {
   scroll-margin-top: 5rem; /* Ajusta según la altura de tu navbar */
 }
 
+.font-anta {
+  font-family: var(--font-anta);
+}
+
+.font-press-start {
+  font-family: var(--font-press-start);
+}
 /* Custom scrollbar for webkit browsers */
 ::-webkit-scrollbar {
   width: 8px;
@@ -52,6 +59,218 @@ section[id] {
   scroll-margin-top: 35px; /* Ajusta según la altura real de tu nav */
 }
 
+/* Efectos neón verde con diferentes intensidades */
+.neon-text-green-low {
+  color: #8ef88e;
+  text-shadow: 
+    0 0 3px #25a006,
+    0 0 7px #10b981,
+    0 0 15px #10b981;
+}
+.neon-text-green-low2 {
+  color: #8ef88e;
+  text-shadow: 
+    0 0 3px #000000,
+    0 0 7px #10b981,
+    0 0 15px #10b981;
+}
+
+.neon-text-green-very-low {
+  color: #fff;
+  text-shadow: 
+    0 0 2px #fff,
+    0 0 5px #10b981;
+}
+
+.neon-text-green-ultra-low {
+  color: #fff;
+  text-shadow: 
+    0 0 1px #fff,
+    0 0 3px #10b981;
+}
+
+/* Efectos neón ámbar con diferentes intensidades */
+.neon-svg-amber-low {
+  filter: 
+    drop-shadow(0 0 3px #807409)
+    drop-shadow(0 0 7px #f59e0b)
+    drop-shadow(0 0 15px #815a11);
+}
+.neon-text-amber-low {
+  color: #dabc51;
+  text-shadow: 
+    0 0 3px #807409,
+    0 0 7px #f59e0b,
+    0 0 15px #f59e0b;
+}
+.neon-text-amber-low2{
+  color: #c59e0f;
+  text-shadow: 
+    0 0 3px #000000,
+    0 0 7px #f59e0b,
+    0 0 15px #f59e0b;
+}
+.neon-text-amber-low3{
+  color: #c59e0f;
+  text-shadow: 
+    0 0 3px #000000,
+    0 0 7px #8f6010,
+    0 0 15px #8f6010;
+}
+.neon-text-pink-low {
+  color: #f472b6;
+  text-shadow: 
+    0 0 3px #831843,
+    0 0 7px #ec4899,
+    0 0 15px #ec4899;
+}
+
+.neon-text-pink-low2 {
+  color: #db2777;
+  text-shadow: 
+    0 0 3px #000000,
+    0 0 7px #ec4899,
+    0 0 15px #ec4899;
+}
+
+
+
+/* Versión con letra hueca y borde neón */
+.neon-outline-text-amber {
+  color: transparent;
+  -webkit-text-stroke: 1px #f59e0b;
+  filter: 
+    drop-shadow(0 0 2px #f59e0b)
+    drop-shadow(0 0 4px #f59e0b)
+    drop-shadow(0 0 8px #f59e0b);
+}
+
+.neon-outline-text-green {
+  color: transparent;
+  -webkit-text-stroke: 1px #10b981;
+  filter: 
+    drop-shadow(0 0 2px #10b981)
+    drop-shadow(0 0 4px #10b981)
+    drop-shadow(0 0 8px #10b981);
+}
+
+/* Efectos para otros colores */
+.neon-text-blue {
+  color: #fff;
+  text-shadow: 
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #3b82f6,
+    0 0 82px #3b82f6,
+    0 0 92px #3b82f6,
+    0 0 102px #3b82f6,
+    0 0 151px #3b82f6;
+}
+
+.neon-text-blue-subtle {
+  color: #fff;
+  text-shadow: 
+    0 0 5px #fff,
+    0 0 10px #3b82f6,
+    0 0 15px #3b82f6;
+}
+
+.neon-text-purple {
+  color: #fff;
+  text-shadow: 
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #8b5cf6,
+    0 0 82px #8b5cf6,
+    0 0 92px #8b5cf6,
+    0 0 102px #8b5cf6,
+    0 0 151px #8b5cf6;
+}
+
+
+
+
+
+.neon-text-purple-subtle {
+  color: #fff;
+  text-shadow: 
+    0 0 5px #fff,
+    0 0 10px #8b5cf6,
+    0 0 15px #8b5cf6;
+}
+
+/* Bordes Divs con efecto neón */
+.neon-border-green {
+  border: 1px solid #10b981;
+  box-shadow: 
+    0 0 5px #10b981,
+    0 0 10px #10b981;
+}
+
+.neon-border-green-subtle {
+  border: 1px solid #10b981;
+  box-shadow: 0 0 5px #10b981;
+}
+
+.neon-border-amber {
+  border: 1px solid #f59e0b;
+  box-shadow: 
+    0 0 5px #f59e0b,
+    0 0 10px #f59e0b;
+}
+
+.neon-border-amber-subtle {
+  border: 1px solid #f59e0b;
+  box-shadow: 0 0 5px #f59e0b;
+}
+
+/* Líneas divisorias con efecto neón */
+.neon-divider-green {
+  height: 1px;
+  background-color: #10b981;
+  box-shadow: 
+    0 0 5px #10b981,
+    0 0 10px #10b981;
+}
+
+.neon-divider-green-subtle {
+  height: 1px;
+  background-color: #10b981;
+  box-shadow: 0 0 5px #10b981;
+}
+
+.neon-divider-amber {
+  height: 1px;
+  background-color: #f59e0b;
+  box-shadow: 
+    0 0 5px #f59e0b,
+    0 0 10px #f59e0b;
+}
+
+.neon-divider-amber-subtle {
+  height: 1px;
+  background-color: #f59e0b;
+  box-shadow: 0 0 5px #f59e0b;
+}
+
+/* Para SVGs y otros elementos gráficos */
+.neon-filter-green {
+  filter: drop-shadow(0 0 5px #10b981) drop-shadow(0 0 10px #10b981);
+}
+
+.neon-filter-green-subtle {
+  filter: drop-shadow(0 0 3px #10b981);
+}
+
+.neon-filter-amber {
+  filter: drop-shadow(0 0 5px #f59e0b) drop-shadow(0 0 10px #f59e0b);
+}
+
+.neon-filter-amber-subtle {
+  filter: drop-shadow(0 0 3px #f59e0b);
+}
 /* O si prefieres ser más específico */
 #introduccion,
 #investigacion,
